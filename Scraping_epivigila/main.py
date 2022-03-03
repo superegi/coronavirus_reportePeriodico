@@ -1,6 +1,9 @@
 import requests
 
-url = "path/to/raw/file.csv"
+
+print('Consiguiendo ultima version')
+
+url = "https://raw.githubusercontent.com/superegi/coronavirus_reportePeriodico/main/Scraping_epivigila/scrap_current.py"
 resp = requests.get(url)
-with open("scrap01.py", "w") as f:
+with open("scrap_current.py", "w") as f:
     f.write(resp.text)
