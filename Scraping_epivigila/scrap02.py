@@ -1,3 +1,4 @@
+# -*- coding: latin-1 -*-
 import pandas as pd
 from selenium import webdriver
 import time
