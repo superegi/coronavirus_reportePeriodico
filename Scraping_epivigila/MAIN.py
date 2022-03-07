@@ -30,7 +30,7 @@ import time
 
 nav=FS.Navegador()
 
-print(nav.TS())
+nav.custom_print(nav.TS())
 
 
 
@@ -38,19 +38,19 @@ up=pd.read_excel('User-Pass.xlsx')
 
 
 
-print(nav.TS())
+nav.custom_print(nav.TS())
 
 nav.user_passw(up['User:'][0],up['Pass:'][0])
 
 
 
-print(nav.TS())
+nav.custom_print(nav.TS())
 
 nav.abre_pag('https://epivigila.minsal.cl/index.php')
 
 
 
-print(nav.TS())
+nav.custom_print(nav.TS())
 
 nav.ingreso()
 
