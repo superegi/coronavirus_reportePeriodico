@@ -1,4 +1,14 @@
 # -*- coding: latin-1 -*-
+import requests
+
+print('Consiguiendo ultima version')
+
+url = "https://raw.githubusercontent.com/superegi/coronavirus_reportePeriodico/main/Scraping_epivigila/Funciones_Scraping.py"
+resp = requests.get(url)
+with open("Funciones_Scraping.py", "wb") as f:
+     f.write(resp.text)
+
+
 import Funciones_Scraping as FS
 import pandas as pd
 import time
