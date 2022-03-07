@@ -5,7 +5,7 @@ print('Consiguiendo ultima version')
 
 url = "http://raw.githubusercontent.com/superegi/coronavirus_reportePeriodico/main/Scraping_epivigila/Funciones_Scraping.py"
 resp = requests.get(url)
-with open("Funciones_Scraping.py", "w") as f:
+with open("Funciones_Scraping.py", "w", encoding="utf-8") as f:
      f.write(resp.text)
 
 
