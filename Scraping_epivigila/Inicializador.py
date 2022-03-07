@@ -5,9 +5,10 @@ import subprocess
 
 print('Consiguiendo ultima version')
 
-url = "https://raw.githubusercontent.com/superegi/coronavirus_reportePeriodico/main/Scraping_epivigila/MAIN.py"
+url = "http://raw.githubusercontent.com/superegi/coronavirus_reportePeriodico/main/Scraping_epivigila/MAIN.py"
 resp = requests.get(url)
-with open("MAIN.py", "wb") as f:
+with open("MAIN.py", "w") as f:
      f.write(resp.text)
 
 subprocess.call(["python", "MAIN.py"])
+print('listo')

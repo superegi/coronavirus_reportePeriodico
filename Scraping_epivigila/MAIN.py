@@ -3,9 +3,9 @@ import requests
 
 print('Consiguiendo ultima version')
 
-url = "https://raw.githubusercontent.com/superegi/coronavirus_reportePeriodico/main/Scraping_epivigila/Funciones_Scraping.py"
+url = "http://raw.githubusercontent.com/superegi/coronavirus_reportePeriodico/main/Scraping_epivigila/Funciones_Scraping.py"
 resp = requests.get(url)
-with open("Funciones_Scraping.py", "wb") as f:
+with open("Funciones_Scraping.py", "w") as f:
      f.write(resp.text)
 
 
@@ -33,7 +33,7 @@ time.sleep(15)
 print(nav.TS())
 nav.click_seremi()
 
-#Aca deberia estar el menÃº que haga elegir que info y cuanto
+#Aca deberia estar el menú que haga elegir que info y cuanto
 print('**** A CONTINUACION INGRESE TIPO  Y CANTIDAD DE DATOS A DESCARGAR ****\n')
 print('**** PARA TIPO DE DATO INGRESE: ****')
 print('**** -NOTIF1 : para accdeder a la lista de notificaciones en gestion de notificaciones ****')

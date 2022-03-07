@@ -77,7 +77,7 @@ class Navegador:
                     L=[prim2[0],prim2[1],caso,inst,rut,nombre,estado,ult2[0],ult2[1]]
                     return L
             
-            elif 'sintom√°tico' in string:
+            elif 'sintom·tico' in string:
                 if 'Contactos' in string:
                     lis=string.split(' ')
                     prim2=lis[:2]
@@ -276,7 +276,7 @@ class Navegador:
             print('**** SE HA CREADO LA TABLA CON: ****',self.Tabla.shape[0],' ENTRADAS')
             self.Tabla.head()
             print('')
-            name=str(input('Ingrese el nombre que tendr√° el archivo: '))
+            name=str(input('Ingrese el nombre que tendr· el archivo: '))
             self.Tabla.to_excel(name+'.xlsx')
             print('**** SE HA GUARDADO EL ARCHIVO "',name,'" EXITOSAMENTE ****\n')
             self.Tabla=pd.DataFrame()
@@ -293,26 +293,26 @@ class Navegador:
             print('**** SE HA CREADO LA TABLA CON: ****',self.Tabla.shape[0],' ENTRADAS')
             self.Tabla.head()
             print('')
-            name=str(input('Ingrese el nombre que tendr√° el archivo: '))
+            name=str(input('Ingrese el nombre que tendr· el archivo: '))
             self.Tabla.to_excel(name+'.xlsx')
             print('**** SE HA GUARDADO EL ARCHIVO "',name,'" EXITOSAMENTE ****\n')
             self.Tabla=pd.DataFrame()
         
-        #Hacer funci√≥n pa las notif1
+        #Hacer funciÛn pa las notif1
         elif dato=='NOTIF1':
             print('**** HA SELECCIONADO LISTA DE NOTIFICACIONES ****')
             self.gestion_notif(1)
             self.registros(100)
             for i in range(0,int(cant/100)):
                 texto=self.driver.find_element(By.XPATH,'//*[@id="tabla_boletin_eno_nuevas"]').text
-                #Aqu√≠ arreglar funci√≥n para transformar texto a tabla!
+                #AquÌ arreglar funciÛn para transformar texto a tabla!
                 df=self.aTabla_por_notif(texto)
                 self.Tabla=pd.concat([self.Tabla,df],ignore_index =True)
                 self.siguiente()
             print('**** SE HA CREADO LA TABLA CON: ****',self.Tabla.shape[0],' ENTRADAS')
             self.Tabla.head()
             print('')
-            name=str(input('Ingrese el nombre que tendr√° el archivo: '))
+            name=str(input('Ingrese el nombre que tendr· el archivo: '))
             self.Tabla.to_excel(name+'.xlsx')
             print('**** SE HA GUARDADO EL ARCHIVO "',name,'" EXITOSAMENTE ****\n')
             self.Tabla=pd.DataFrame()
