@@ -1,10 +1,18 @@
 # -*- coding: latin-1 -*-
 
 import requests
+import Funciones_Scraping as FS
+
+import pandas as pd
+
+import time
 
 
 
-print('Consiguiendo ultima version')
+nav=FS.Navegador()
+
+
+nav.custom_print('Consiguiendo ultima version')
 
 
 
@@ -20,15 +28,7 @@ with open("Funciones_Scraping.py", "w", encoding="utf-8") as f:
 
 
 
-import Funciones_Scraping as FS
 
-import pandas as pd
-
-import time
-
-
-
-nav=FS.Navegador()
 
 nav.custom_print(nav.TS())
 
@@ -56,13 +56,13 @@ nav.ingreso()
 
 
 
-print('TIENE 15 SEG PARA RESOLVER EL CAPTCHA DE FORMA MANUAL EN CASO DE SER NECESARIO ****')
+nav.custom_print('TIENE 15 SEG PARA RESOLVER EL CAPTCHA DE FORMA MANUAL EN CASO DE SER NECESARIO ****')
 
 time.sleep(15)
 
 
 
-print(nav.TS())
+nav.custom_print(nav.TS())
 
 nav.click_seremi()
 
@@ -70,34 +70,34 @@ nav.click_seremi()
 
 #Aca deberia estar el men� que haga elegir que info y cuanto
 
-print('**** A CONTINUACION INGRESE TIPO  Y CANTIDAD DE DATOS A DESCARGAR ****\n')
+nav.custom_print('**** A CONTINUACION INGRESE TIPO  Y CANTIDAD DE DATOS A DESCARGAR ****\n')
 
-print('**** PARA TIPO DE DATO INGRESE: ****')
+nav.custom_print('**** PARA TIPO DE DATO INGRESE: ****')
 
-print('**** NOTIF1 : para accdeder a la lista de notificaciones en gestion de notificaciones ****')
+nav.custom_print('**** NOTIF1 : para accdeder a la lista de notificaciones en gestion de notificaciones ****')
 
-print('**** NOTIF2 : para accdeder a muestras por notificar en gestion de notificaciones ****')
+nav.custom_print('**** NOTIF2 : para accdeder a muestras por notificar en gestion de notificaciones ****')
 
-print('**** SEG : para accdeder a contactos covid en gestion de seguimiento ****')
+nav.custom_print('**** SEG : para accdeder a contactos covid en gestion de seguimiento ****')
 
-print('**** BAC : para accdeder a listar en gestion de BAC COVID19 ****\n')
+nav.custom_print('**** BAC : para accdeder a listar en gestion de BAC COVID19 ****\n')
 
 
 
-print('**** PARA CANTIDAD DE DATO INGRESE UN NUMERO DE LAS SIGUIENTES OPCIONES: ****')
+nav.custom_print('**** PARA CANTIDAD DE DATO INGRESE UN NUMERO DE LAS SIGUIENTES OPCIONES: ****')
 
-print('**** 100 - 200 - 300 - 400 - 500 ****\n')
+nav.custom_print('**** 100 - 200 - 300 - 400 - 500 ****\n')
 
-print(nav.TS())
+nav.custom_print(nav.TS())
 
 
 
 nav.descargar_info()
 
-print(nav.TS())
+nav.custom_print(nav.TS())
 
 
 
-print('**** FIN DEL PROGRAMA ****')
+nav.custom_print('**** FIN DEL PROGRAMA ****')
 
-print(nav.TS())
+nav.custom_print(nav.TS())

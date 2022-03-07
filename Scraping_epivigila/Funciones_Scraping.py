@@ -6,7 +6,19 @@
 
 
 
+
+
+
+
+
+
+
+
 import datetime as dt
+
+
+
+
 
 
 
@@ -14,11 +26,23 @@ from selenium.webdriver.common.by import By
 
 
 
+
+
+
+
 import pandas as pd
 
 
 
+
+
+
+
 from selenium import webdriver
+
+
+
+
 
 
 
@@ -30,7 +54,19 @@ import time
 
 
 
+
+
+
+
+
+
+
+
 class Navegador:
+
+
+
+
 
 
 
@@ -38,7 +74,15 @@ class Navegador:
 
 
 
+
+
+
+
         print('**Inicio Modulo Navegador**\n')
+
+
+
+
 
 
 
@@ -46,7 +90,15 @@ class Navegador:
 
 
 
+
+
+
+
         self.user  = ""
+
+
+
+
 
 
 
@@ -54,7 +106,15 @@ class Navegador:
 
 
 
+
+
+
+
         self.driver = webdriver.Chrome()
+
+
+
+
 
 
 
@@ -66,7 +126,19 @@ class Navegador:
 
 
 
+
+
+
+
+
+
+
+
 #Funcion para transformar el texto de lista por notificar en tabla    
+
+
+
+
 
 
 
@@ -74,7 +146,15 @@ class Navegador:
 
 
 
+
+
+
+
         def aLista_por_notif(text):
+
+
+
+
 
 
 
@@ -82,11 +162,23 @@ class Navegador:
 
 
 
+
+
+
+
                     tres_ult=text[len(text)-36:]
 
 
 
+
+
+
+
                     tres_ult=tres_ult.split(' ')
+
+
+
+
 
 
 
@@ -94,7 +186,15 @@ class Navegador:
 
 
 
+
+
+
+
                     X=text[:len(text)-36]
+
+
+
+
 
 
 
@@ -102,7 +202,15 @@ class Navegador:
 
 
 
+
+
+
+
                     tres_ult=text[len(text)-30:]
+
+
+
+
 
 
 
@@ -110,7 +218,15 @@ class Navegador:
 
 
 
+
+
+
+
                     X=text[:len(text)-30]
+
+
+
+
 
 
 
@@ -118,7 +234,15 @@ class Navegador:
 
 
 
+
+
+
+
                 ind=100
+
+
+
+
 
 
 
@@ -126,7 +250,15 @@ class Navegador:
 
 
 
+
+
+
+
                     if X.find(i)>0:
+
+
+
+
 
 
 
@@ -134,11 +266,23 @@ class Navegador:
 
 
 
+
+
+
+
                             ind=X.find(i)
 
 
 
+
+
+
+
             
+
+
+
+
 
 
 
@@ -146,7 +290,15 @@ class Navegador:
 
 
 
+
+
+
+
                 rut=X.replace(nombre,"").split(' ')[0]
+
+
+
+
 
 
 
@@ -154,7 +306,15 @@ class Navegador:
 
 
 
+
+
+
+
                 l=[nombre,rut,lab]
+
+
+
+
 
 
 
@@ -162,7 +322,15 @@ class Navegador:
 
 
 
+
+
+
+
                 return L
+
+
+
+
 
 
 
@@ -170,7 +338,15 @@ class Navegador:
 
 
 
+
+
+
+
         lista=texto.split('\n')
+
+
+
+
 
 
 
@@ -178,7 +354,15 @@ class Navegador:
 
 
 
+
+
+
+
         for i in lista[6:]:
+
+
+
+
 
 
 
@@ -186,7 +370,15 @@ class Navegador:
 
 
 
+
+
+
+
             LLL.append(ll)
+
+
+
+
 
 
 
@@ -194,7 +386,19 @@ class Navegador:
 
 
 
+
+
+
+
         return DF
+
+
+
+
+
+
+
+
 
 
 
@@ -206,7 +410,15 @@ class Navegador:
 
 
 
+
+
+
+
     def aTabla_caso(self,texto):
+
+
+
+
 
 
 
@@ -214,7 +426,15 @@ class Navegador:
 
 
 
+
+
+
+
             if 'En proceso de' in string:
+
+
+
+
 
 
 
@@ -222,7 +442,15 @@ class Navegador:
 
 
 
+
+
+
+
                     lis=string.split(' ')
+
+
+
+
 
 
 
@@ -230,7 +458,15 @@ class Navegador:
 
 
 
+
+
+
+
                     ult2=lis[-2:]
+
+
+
+
 
 
 
@@ -238,7 +474,15 @@ class Navegador:
 
 
 
+
+
+
+
                     inst=" ".join(lis[3:6])
+
+
+
+
 
 
 
@@ -246,7 +490,15 @@ class Navegador:
 
 
 
+
+
+
+
                     estado=" ".join(lis[-6:-2])
+
+
+
+
 
 
 
@@ -254,7 +506,15 @@ class Navegador:
 
 
 
+
+
+
+
                     L=[prim2[0],prim2[1],caso,inst,rut,nombre,estado,ult2[0],ult2[1]]
+
+
+
+
 
 
 
@@ -262,7 +522,15 @@ class Navegador:
 
 
 
+
+
+
+
                 
+
+
+
+
 
 
 
@@ -270,7 +538,15 @@ class Navegador:
 
 
 
+
+
+
+
                     lis=string.split(' ')
+
+
+
+
 
 
 
@@ -278,7 +554,15 @@ class Navegador:
 
 
 
+
+
+
+
                     ult2=lis[-2:]
+
+
+
+
 
 
 
@@ -286,11 +570,23 @@ class Navegador:
 
 
 
+
+
+
+
                     inst=" ".join(lis[4:7])
 
 
 
+
+
+
+
                     rut=lis[7]
+
+
+
+
 
 
 
@@ -298,7 +594,15 @@ class Navegador:
 
 
 
+
+
+
+
                     nombre=" ".join(lis[8:-6])
+
+
+
+
 
 
 
@@ -306,11 +610,23 @@ class Navegador:
 
 
 
+
+
+
+
                     return L
 
 
 
+
+
+
+
             
+
+
+
+
 
 
 
@@ -318,7 +634,15 @@ class Navegador:
 
 
 
+
+
+
+
                 if 'Contactos' in string:
+
+
+
+
 
 
 
@@ -326,7 +650,15 @@ class Navegador:
 
 
 
+
+
+
+
                     prim2=lis[:2]
+
+
+
+
 
 
 
@@ -334,7 +666,15 @@ class Navegador:
 
 
 
+
+
+
+
                     caso=" ".join(lis[2:3])
+
+
+
+
 
 
 
@@ -342,7 +682,15 @@ class Navegador:
 
 
 
+
+
+
+
                     rut=lis[6]
+
+
+
+
 
 
 
@@ -350,7 +698,15 @@ class Navegador:
 
 
 
+
+
+
+
                     nombre=" ".join(lis[8:-4])
+
+
+
+
 
 
 
@@ -358,11 +714,23 @@ class Navegador:
 
 
 
+
+
+
+
                     return L
 
 
 
+
+
+
+
         
+
+
+
+
 
 
 
@@ -370,7 +738,15 @@ class Navegador:
 
 
 
+
+
+
+
                 if 'Contactos' in string:
+
+
+
+
 
 
 
@@ -378,11 +754,23 @@ class Navegador:
 
 
 
+
+
+
+
                     prim2=lis[:2]
 
 
 
+
+
+
+
                     ult=lis[-1]
+
+
+
+
 
 
 
@@ -390,7 +778,15 @@ class Navegador:
 
 
 
+
+
+
+
                     inst=" ".join(lis[3:6])
+
+
+
+
 
 
 
@@ -398,7 +794,15 @@ class Navegador:
 
 
 
+
+
+
+
                     estado=" ".join(lis[-4:-1])
+
+
+
+
 
 
 
@@ -406,11 +810,23 @@ class Navegador:
 
 
 
+
+
+
+
                     L=[prim2[0],prim2[1],caso,inst,rut,nombre,estado,"",ult]
 
 
 
+
+
+
+
                     return L
+
+
+
+
 
 
 
@@ -418,11 +834,23 @@ class Navegador:
 
 
 
+
+
+
+
                     lis=string.split(' ')
 
 
 
+
+
+
+
                     prim2=lis[:2]
+
+
+
+
 
 
 
@@ -430,7 +858,15 @@ class Navegador:
 
 
 
+
+
+
+
                     caso=" ".join(lis[2:4])
+
+
+
+
 
 
 
@@ -438,7 +874,15 @@ class Navegador:
 
 
 
+
+
+
+
                     rut=lis[7]
+
+
+
+
 
 
 
@@ -446,7 +890,15 @@ class Navegador:
 
 
 
+
+
+
+
                     nombre=" ".join(lis[8:-4])
+
+
+
+
 
 
 
@@ -454,11 +906,23 @@ class Navegador:
 
 
 
+
+
+
+
                     return L
 
 
 
+
+
+
+
             
+
+
+
+
 
 
 
@@ -466,11 +930,23 @@ class Navegador:
 
 
 
+
+
+
+
                 lis=string.split(' ')
 
 
 
+
+
+
+
                 prim2=lis[:2]
+
+
+
+
 
 
 
@@ -478,7 +954,15 @@ class Navegador:
 
 
 
+
+
+
+
                 caso=" ".join(lis[2:3])
+
+
+
+
 
 
 
@@ -486,7 +970,15 @@ class Navegador:
 
 
 
+
+
+
+
                 rut=lis[6]
+
+
+
+
 
 
 
@@ -494,7 +986,15 @@ class Navegador:
 
 
 
+
+
+
+
                 nombre=" ".join(lis[7:-4])
+
+
+
+
 
 
 
@@ -502,7 +1002,15 @@ class Navegador:
 
 
 
+
+
+
+
                 return L
+
+
+
+
 
 
 
@@ -510,7 +1018,15 @@ class Navegador:
 
 
 
+
+
+
+
             
+
+
+
+
 
 
 
@@ -518,7 +1034,15 @@ class Navegador:
 
 
 
+
+
+
+
                     lis=string.split(' ')
+
+
+
+
 
 
 
@@ -526,7 +1050,15 @@ class Navegador:
 
 
 
+
+
+
+
                     ult2=lis[-2:]
+
+
+
+
 
 
 
@@ -534,7 +1066,15 @@ class Navegador:
 
 
 
+
+
+
+
                     inst=" ".join(lis[4:7])
+
+
+
+
 
 
 
@@ -542,7 +1082,15 @@ class Navegador:
 
 
 
+
+
+
+
                     estado=" ".join(lis[-4:-2])
+
+
+
+
 
 
 
@@ -550,7 +1098,15 @@ class Navegador:
 
 
 
+
+
+
+
                     L=[prim2[0],prim2[1],caso,inst,rut,nombre,estado,ult2[0],ult2[1]]
+
+
+
+
 
 
 
@@ -558,7 +1114,15 @@ class Navegador:
 
 
 
+
+
+
+
             
+
+
+
+
 
 
 
@@ -566,7 +1130,15 @@ class Navegador:
 
 
 
+
+
+
+
                 lis=string.split(' ')
+
+
+
+
 
 
 
@@ -574,7 +1146,15 @@ class Navegador:
 
 
 
+
+
+
+
                 ult2=lis[-2:]
+
+
+
+
 
 
 
@@ -582,7 +1162,15 @@ class Navegador:
 
 
 
+
+
+
+
                 inst=" ".join(lis[4:7])
+
+
+
+
 
 
 
@@ -590,7 +1178,15 @@ class Navegador:
 
 
 
+
+
+
+
                 estado=" ".join(lis[-4:-2])
+
+
+
+
 
 
 
@@ -598,7 +1194,15 @@ class Navegador:
 
 
 
+
+
+
+
                 L=[prim2[0],prim2[1],caso,inst,rut,nombre,estado,ult2[0],ult2[1]]
+
+
+
+
 
 
 
@@ -606,7 +1210,19 @@ class Navegador:
 
 
 
+
+
+
+
                 
+
+
+
+
+
+
+
+
 
 
 
@@ -618,7 +1234,15 @@ class Navegador:
 
 
 
+
+
+
+
         LLL=[]
+
+
+
+
 
 
 
@@ -626,7 +1250,15 @@ class Navegador:
 
 
 
+
+
+
+
             ll=aLista_caso(i)
+
+
+
+
 
 
 
@@ -634,7 +1266,15 @@ class Navegador:
 
 
 
+
+
+
+
         DF=pd.DataFrame(LLL,columns=['Folio','Fecha de Ingreso','Tipo de Seguimiento','Nombre Institucion','Identificacion','Nombre','Estado','Fecha ultimo contacto','Seguimientos Realizados'])
+
+
+
+
 
 
 
@@ -642,7 +1282,15 @@ class Navegador:
 
 
 
+
+
+
+
     
+
+
+
+
 
 
 
@@ -650,7 +1298,15 @@ class Navegador:
 
 
 
+
+
+
+
        	t = dt.datetime.now().strftime('%m/%d %H:%M:%S')
+
+
+
+
 
 
 
@@ -658,16 +1314,33 @@ class Navegador:
 
 
 
+
+
+
+
        	return str(t + '| [' + evol + 's]:')
+
        
+
     def custom_print(self,message_to_print, log_file='LOG.txt'):
+
         print(message_to_print)
+
         with open(log_file, 'a') as of:
+
             of.write('\n' + message_to_print)
 
 
 
+
+
+
+
         
+
+
+
+
 
 
 
@@ -675,7 +1348,15 @@ class Navegador:
 
 
 
+
+
+
+
         self.custom_print('**** SE PROCEDE A IMPORTAR USUARIO Y CLAVE ****\n')
+
+
+
+
 
 
 
@@ -683,7 +1364,15 @@ class Navegador:
 
 
 
+
+
+
+
         self.passw = str(pa)
+
+
+
+
 
 
 
@@ -691,7 +1380,15 @@ class Navegador:
 
 
 
+
+
+
+
     
+
+
+
+
 
 
 
@@ -699,7 +1396,15 @@ class Navegador:
 
 
 
+
+
+
+
         self.custom_print('**** SE PROCEDE A ABRIR EL NAVEGADOR ****\n')
+
+
+
+
 
 
 
@@ -707,7 +1412,15 @@ class Navegador:
 
 
 
+
+
+
+
         time.sleep(2)
+
+
+
+
 
 
 
@@ -715,7 +1428,15 @@ class Navegador:
 
 
 
+
+
+
+
     
+
+
+
+
 
 
 
@@ -723,7 +1444,15 @@ class Navegador:
 
 
 
-        print('**** SE PROCEDE A INGRESAR USUARIO Y CLAVE ****\n')
+
+
+
+
+        self.custom_print('**** SE PROCEDE A INGRESAR USUARIO Y CLAVE ****\n')
+
+
+
+
 
 
 
@@ -731,11 +1460,23 @@ class Navegador:
 
 
 
+
+
+
+
         user_Box.send_keys(self.user)
 
 
 
+
+
+
+
         time.sleep(2)
+
+
+
+
 
 
 
@@ -743,11 +1484,23 @@ class Navegador:
 
 
 
+
+
+
+
         pass_Box.send_keys(self.passw)
 
 
 
+
+
+
+
         time.sleep(2)
+
+
+
+
 
 
 
@@ -755,15 +1508,31 @@ class Navegador:
 
 
 
+
+
+
+
         time.sleep(2)
 
 
 
-        print('**** LISTO ****\n')
+
+
+
+
+        self.custom_print('**** LISTO ****\n')
+
+
+
+
 
 
 
     
+
+
+
+
 
 
 
@@ -771,7 +1540,15 @@ class Navegador:
 
 
 
-        print('**** SE PROCEDE A DAR CLICK EN "SEREMI" ****\n')
+
+
+
+
+        self.custom_print('**** SE PROCEDE A DAR CLICK EN "SEREMI" ****\n')
+
+
+
+
 
 
 
@@ -779,15 +1556,31 @@ class Navegador:
 
 
 
+
+
+
+
         time.sleep(3)
 
 
 
-        print('**** LISTO ****\n')
+
+
+
+
+        self.custom_print('**** LISTO ****\n')
+
+
+
+
 
 
 
     
+
+
+
+
 
 
 
@@ -795,7 +1588,15 @@ class Navegador:
 
 
 
-        print('**** SE PROCEDE A ABRIR EL ACORDEON DE GESTION DE NOTIFICACIONES **** ')
+
+
+
+
+        self.custom_print('**** SE PROCEDE A ABRIR EL ACORDEON DE GESTION DE NOTIFICACIONES **** ')
+
+
+
+
 
 
 
@@ -803,7 +1604,15 @@ class Navegador:
 
 
 
+
+
+
+
         time.sleep(3)
+
+
+
+
 
 
 
@@ -811,7 +1620,15 @@ class Navegador:
 
 
 
-            print('**** SE CLICKEA EN LISTA NOTIFICACIONES **** ')
+
+
+
+
+            self.custom_print('**** SE CLICKEA EN LISTA NOTIFICACIONES **** ')
+
+
+
+
 
 
 
@@ -819,15 +1636,31 @@ class Navegador:
 
 
 
+
+
+
+
             time.sleep(3)
 
 
 
-            print('**** LISTO ****\n')
+
+
+
+
+            self.custom_print('**** LISTO ****\n')
+
+
+
+
 
 
 
             
+
+
+
+
 
 
 
@@ -835,7 +1668,15 @@ class Navegador:
 
 
 
-            print('**** SE CLICKEA EN LISTA DE MUESTRAS POR NOTIFICAR **** ')
+
+
+
+
+            self.custom_print('**** SE CLICKEA EN LISTA DE MUESTRAS POR NOTIFICAR **** ')
+
+
+
+
 
 
 
@@ -843,15 +1684,31 @@ class Navegador:
 
 
 
+
+
+
+
             time.sleep(3)
 
 
 
-            print('**** LISTO ****\n')
+
+
+
+
+            self.custom_print('**** LISTO ****\n')
+
+
+
+
 
 
 
     
+
+
+
+
 
 
 
@@ -859,7 +1716,15 @@ class Navegador:
 
 
 
-        print('**** SE PROCEDE A ABRIR EL ACORDEON DE GESTION DE SEGUIMIENTO **** ')
+
+
+
+
+        self.custom_print('**** SE PROCEDE A ABRIR EL ACORDEON DE GESTION DE SEGUIMIENTO **** ')
+
+
+
+
 
 
 
@@ -867,11 +1732,23 @@ class Navegador:
 
 
 
+
+
+
+
         time.sleep(2)
 
 
 
-        print('**** SE CLICKEA EN LISTA DE CONTACTOS PACIENTES COVID-19 **** ')
+
+
+
+
+        self.custom_print('**** SE CLICKEA EN LISTA DE CONTACTOS PACIENTES COVID-19 **** ')
+
+
+
+
 
 
 
@@ -879,11 +1756,23 @@ class Navegador:
 
 
 
-        print('**** LISTO ****\n')
+
+
+
+
+        self.custom_print('**** LISTO ****\n')
+
+
+
+
 
 
 
     
+
+
+
+
 
 
 
@@ -891,7 +1780,15 @@ class Navegador:
 
 
 
-        print('**** SE PROCEDE A ABRIR EL ACORDEON DE GESTION DE BAC COVID-19 **** ')
+
+
+
+
+        self.custom_print('**** SE PROCEDE A ABRIR EL ACORDEON DE GESTION DE BAC COVID-19 **** ')
+
+
+
+
 
 
 
@@ -899,11 +1796,23 @@ class Navegador:
 
 
 
+
+
+
+
         time.sleep(2)
 
 
 
-        print('**** SE CLICKEA EN LISTAR **** ')
+
+
+
+
+        self.custom_print('**** SE CLICKEA EN LISTAR **** ')
+
+
+
+
 
 
 
@@ -911,7 +1820,15 @@ class Navegador:
 
 
 
-        print('**** LISTO ****\n')
+
+
+
+
+        self.custom_print('**** LISTO ****\n')
+
+
+
+
 
 
 
@@ -919,7 +1836,15 @@ class Navegador:
 
 
 
+
+
+
+
         
+
+
+
+
 
 
 
@@ -927,7 +1852,15 @@ class Navegador:
 
 
 
-        print('**** SE CLICKEA EN LA CANTIDAD DE REGISTROS **** ')
+
+
+
+
+        self.custom_print('**** SE CLICKEA EN LA CANTIDAD DE REGISTROS **** ')
+
+
+
+
 
 
 
@@ -935,7 +1868,15 @@ class Navegador:
 
 
 
-            print('**** 10 REGISTROS ****')
+
+
+
+
+            self.custom_print('**** 10 REGISTROS ****')
+
+
+
+
 
 
 
@@ -943,15 +1884,31 @@ class Navegador:
 
 
 
+
+
+
+
             time.sleep(3)
 
 
 
-            print('**** LISTO ****\n')
+
+
+
+
+            self.custom_print('**** LISTO ****\n')
+
+
+
+
 
 
 
             
+
+
+
+
 
 
 
@@ -959,7 +1916,15 @@ class Navegador:
 
 
 
-            print('**** 25 REGISTROS ****')
+
+
+
+
+            self.custom_print('**** 25 REGISTROS ****')
+
+
+
+
 
 
 
@@ -967,15 +1932,31 @@ class Navegador:
 
 
 
+
+
+
+
             time.sleep(3)
 
 
 
-            print('**** LISTO ****\n')
+
+
+
+
+            self.custom_print('**** LISTO ****\n')
+
+
+
+
 
 
 
             
+
+
+
+
 
 
 
@@ -983,7 +1964,15 @@ class Navegador:
 
 
 
-            print('**** 50 REGISTROS ****')
+
+
+
+
+            self.custom_print('**** 50 REGISTROS ****')
+
+
+
+
 
 
 
@@ -991,15 +1980,31 @@ class Navegador:
 
 
 
+
+
+
+
             time.sleep(3)
 
 
 
-            print('**** LISTO ****\n')
+
+
+
+
+            self.custom_print('**** LISTO ****\n')
+
+
+
+
 
 
 
             
+
+
+
+
 
 
 
@@ -1007,7 +2012,15 @@ class Navegador:
 
 
 
-            print('**** 100 REGISTROS ****')
+
+
+
+
+            self.custom_print('**** 100 REGISTROS ****')
+
+
+
+
 
 
 
@@ -1015,15 +2028,31 @@ class Navegador:
 
 
 
+
+
+
+
             time.sleep(3)
 
 
 
-            print('**** LISTO ****\n')
+
+
+
+
+            self.custom_print('**** LISTO ****\n')
+
+
+
+
 
 
 
     
+
+
+
+
 
 
 
@@ -1031,7 +2060,15 @@ class Navegador:
 
 
 
-        print('**** SE DA CLICK EN BOTON "SIGUIENTE" AL FINAL DE LA PAGINA ****')
+
+
+
+
+        self.custom_print('**** SE DA CLICK EN BOTON "SIGUIENTE" AL FINAL DE LA PAGINA ****')
+
+
+
+
 
 
 
@@ -1039,11 +2076,23 @@ class Navegador:
 
 
 
+
+
+
+
         time.sleep(3)
 
 
 
-        print('**** LISTO ****\n')
+
+
+
+
+        self.custom_print('**** LISTO ****\n')
+
+
+
+
 
 
 
@@ -1051,7 +2100,15 @@ class Navegador:
 
 
 
+
+
+
+
     def descargar_info(self):
+
+
+
+
 
 
 
@@ -1059,11 +2116,23 @@ class Navegador:
 
 
 
+
+
+
+
         cant=int(input('Ingrese cantidad de datos: '))
 
 
 
-        print('')
+
+
+
+
+        self.custom_print('')
+
+
+
+
 
 
 
@@ -1071,7 +2140,15 @@ class Navegador:
 
 
 
-            print('**** HA SELECCIONADO LISTA DE MUESTRAS POR NOTIFICAR ****')
+
+
+
+
+            self.custom_print('**** HA SELECCIONADO LISTA DE MUESTRAS POR NOTIFICAR ****')
+
+
+
+
 
 
 
@@ -1079,7 +2156,15 @@ class Navegador:
 
 
 
+
+
+
+
             self.registros(100)
+
+
+
+
 
 
 
@@ -1087,7 +2172,15 @@ class Navegador:
 
 
 
+
+
+
+
                 texto=self.driver.find_element(By.XPATH,'//*[@id="tabla_boletin_eno_nuevas"]').text
+
+
+
+
 
 
 
@@ -1095,7 +2188,15 @@ class Navegador:
 
 
 
+
+
+
+
                 self.Tabla=pd.concat([self.Tabla,df],ignore_index =True)
+
+
+
+
 
 
 
@@ -1103,7 +2204,16 @@ class Navegador:
 
 
 
-            print('**** SE HA CREADO LA TABLA CON: ',self.Tabla.shape[0],' ENTRADAS ****')
+
+
+
+
+            tt=str(f'**** SE HA CREADO LA TABLA CON: {self.Tabla.shape[0]} ENTRADAS ****')
+            self.custom_print(tt)
+
+
+
+
 
 
 
@@ -1111,7 +2221,15 @@ class Navegador:
 
 
 
-            print('')
+
+
+
+
+            self.custom_print('')
+
+
+
+
 
 
 
@@ -1119,7 +2237,15 @@ class Navegador:
 
 
 
-            print('**** SE HA GUARDADO EL ARCHIVO "LISTADO MUESTRAS POR NOTIFICAR" EXITOSAMENTE ****\n')
+
+
+
+
+            self.custom_print('**** SE HA GUARDADO EL ARCHIVO "LISTADO MUESTRAS POR NOTIFICAR" EXITOSAMENTE ****\n')
+
+
+
+
 
 
 
@@ -1127,7 +2253,15 @@ class Navegador:
 
 
 
+
+
+
+
         
+
+
+
+
 
 
 
@@ -1135,7 +2269,15 @@ class Navegador:
 
 
 
-            print('**** HA SELECCIONADO LISTA DE CONTACTOS DE GESTION DE SEGUIMIENTO ****')
+
+
+
+
+            self.custom_print('**** HA SELECCIONADO LISTA DE CONTACTOS DE GESTION DE SEGUIMIENTO ****')
+
+
+
+
 
 
 
@@ -1143,7 +2285,15 @@ class Navegador:
 
 
 
+
+
+
+
             self.registros(100)
+
+
+
+
 
 
 
@@ -1151,7 +2301,15 @@ class Navegador:
 
 
 
+
+
+
+
                 texto=self.driver.find_element(By.XPATH,'//*[@id="tabla_boletin_eno_nuevas"]').text
+
+
+
+
 
 
 
@@ -1159,7 +2317,15 @@ class Navegador:
 
 
 
+
+
+
+
                 self.Tabla=pd.concat([self.Tabla,df],ignore_index =True)
+
+
+
+
 
 
 
@@ -1167,7 +2333,16 @@ class Navegador:
 
 
 
-            print('**** SE HA CREADO LA TABLA CON: ',self.Tabla.shape[0],' ENTRADAS ****')
+
+
+
+
+            tt=str(f'**** SE HA CREADO LA TABLA CON: {self.Tabla.shape[0]} ENTRADAS ****')
+            self.custom_print(tt)
+
+
+
+
 
 
 
@@ -1175,7 +2350,15 @@ class Navegador:
 
 
 
-            print('')
+
+
+
+
+            self.custom_print('')
+
+
+
+
 
 
 
@@ -1183,7 +2366,15 @@ class Navegador:
 
 
 
-            print('**** SE HA GUARDADO EL ARCHIVO "LISTADO CONTACTOS PACIENTES COVID19" EXITOSAMENTE ****\n')
+
+
+
+
+            self.custom_print('**** SE HA GUARDADO EL ARCHIVO "LISTADO CONTACTOS PACIENTES COVID19" EXITOSAMENTE ****\n')
+
+
+
+
 
 
 
@@ -1191,7 +2382,15 @@ class Navegador:
 
 
 
+
+
+
+
         
+
+
+
+
 
 
 
@@ -1199,11 +2398,23 @@ class Navegador:
 
 
 
+
+
+
+
         elif dato=='NOTIF1':
 
 
 
-            print('**** HA SELECCIONADO LISTA DE NOTIFICACIONES ****')
+
+
+
+
+            self.custom_print('**** HA SELECCIONADO LISTA DE NOTIFICACIONES ****')
+
+
+
+
 
 
 
@@ -1211,15 +2422,31 @@ class Navegador:
 
 
 
+
+
+
+
             self.registros(100)
 
 
 
-            print('**** Funcion en proceso... ****')
+
+
+
+
+            self.custom_print('**** Funcion en proceso... ****')
+
+
+
+
 
 
 
         
+
+
+
+
 
 
 
@@ -1227,11 +2454,23 @@ class Navegador:
 
 
 
+
+
+
+
         elif dato=='BAC':
 
 
 
-            print('**** HA SELECCIONADO LISTA DE GESTION DE BAC ****')
+
+
+
+
+            self.custom_print('**** HA SELECCIONADO LISTA DE GESTION DE BAC ****')
+
+
+
+
 
 
 
@@ -1239,7 +2478,15 @@ class Navegador:
 
 
 
-            print('**** Funcion en proceso.... ****')
+
+
+
+
+            self.custom_print('**** Funcion en proceso.... ****')
+
+
+
+
 
 
 
@@ -1247,11 +2494,23 @@ class Navegador:
 
 
 
+
+
+
+
                 
 
 
 
+
+
+
+
                 
+
+
+
+
 
 
 
@@ -1259,7 +2518,19 @@ class Navegador:
 
 
 
+
+
+
+
         
+
+
+
+
+
+
+
+
 
 
 
