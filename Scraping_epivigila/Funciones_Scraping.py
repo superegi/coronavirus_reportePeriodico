@@ -13,6 +13,16 @@ class Navegador:
         self.passw = ""
         self.driver = webdriver.Chrome()
         self.Tabla=pd.DataFrame()
+    
+    def TS(self):
+       	t = dt.datetime.now().strftime('%m/%d %H:%M:%S')
+       	evol = str((dt.datetime.now() - self.TS_inicial).seconds)
+       	return str(t + '| [' + evol + 's]:')
+
+    def custom_print(self,message_to_print, log_file='LOG.txt'):
+        print(message_to_print)
+        with open(log_file, 'a') as of:
+            of.write('\n' + message_to_print)
   
     #Funcion que extrae tabla de notif1.
     def notif1_tabla(self):
@@ -27,6 +37,11 @@ class Navegador:
         estab  = self.driver.find_elements(By.XPATH,'//tbody/tr/td[11]')
         
         entradas=[]
+        
+        if self.driver.find_element(By.XPATH,'//tbody/tr/td[1]') == 'No se encontraron resultados':
+            self.custom_print('**** No se encontraron más resultados ****\n')
+            return pd.DataFrame()
+            
         for i in range(len(folios)):
             data={'Folio': folios[i].text,
                  'Identificación paciente': ids[i].text,
@@ -51,6 +66,11 @@ class Navegador:
         resul       = self.driver.find_elements(By.XPATH,'//tbody/tr/td[6]')
     
         entradas=[]
+        
+        if self.driver.find_element(By.XPATH,'//tbody/tr/td[1]') == 'No se encontraron resultados':
+            self.custom_print('**** No se encontraron más resultados ****\n')
+            return pd.DataFrame()
+        
         for i in range(len(name)):
             data={'Nombre paciente': name[i].text,
                  'Número identificación': ids[i].text,
@@ -75,6 +95,11 @@ class Navegador:
         segs      = self.driver.find_elements(By.XPATH,'//tbody/tr/td[9]')
     
         entradas=[]
+        
+        if self.driver.find_element(By.XPATH,'//tbody/tr/td[1]') == 'No se encontraron resultados':
+            self.custom_print('**** No se encontraron más resultados ****\n')
+            return pd.DataFrame()
+        
         for i in range(len(name)):
             data={'Folio': folio[i].text,
                  'Fecha de ingreso': fecha_ing[i].text,
@@ -90,35 +115,27 @@ class Navegador:
         return df_data
     
     def bac_tabla(self):
-        if self.driver.find_element(By.XPATH,'//tbody/tr/td[1]').text=='Ningún dato disponible en esta tabla':
-            return 'Ningún dato disponible en esta tabla'
-        else:
-            folio = self.driver.find_elements(By.XPATH,'//tbody/tr/td[1]')
-            ids   = self.driver.find_elements(By.XPATH,'//tbody/tr/td[2]')
-            name  = self.driver.find_elements(By.XPATH,'//tbody/tr/td[3]')
-            Fecha = self.driver.find_elements(By.XPATH,'//tbody/tr/td[4]')
-            reg   = self.driver.find_elements(By.XPATH,'//tbody/tr/td[5]')
-            
-            entradas=[]
-            for i in range(len(name)):
-                data={'Folio BAC': folio[i].text,
-                     'Número de identificación': ids[i].text,
-                     'Nombre completo': name[i].text,
-                     'Fecha toma muestra': Fecha[i].text,
-                     'Región BAC': reg[i].text}
-                entradas.append(data)
-            df_data=pd.DataFrame(entradas)
-            return df_data
-
-    def TS(self):
-       	t = dt.datetime.now().strftime('%m/%d %H:%M:%S')
-       	evol = str((dt.datetime.now() - self.TS_inicial).seconds)
-       	return str(t + '| [' + evol + 's]:')
-
-    def custom_print(self,message_to_print, log_file='LOG.txt'):
-        print(message_to_print)
-        with open(log_file, 'a') as of:
-            of.write('\n' + message_to_print)
+        folio = self.driver.find_elements(By.XPATH,'//tbody/tr/td[1]')
+        ids   = self.driver.find_elements(By.XPATH,'//tbody/tr/td[2]')
+        name  = self.driver.find_elements(By.XPATH,'//tbody/tr/td[3]')
+        Fecha = self.driver.find_elements(By.XPATH,'//tbody/tr/td[4]')
+        reg   = self.driver.find_elements(By.XPATH,'//tbody/tr/td[5]')
+        
+        entradas=[]
+        
+        if self.driver.find_element(By.XPATH,'//tbody/tr/td[1]') == 'No se encontraron resultados':
+            self.custom_print('**** No se encontraron más resultados ****\n')
+            return pd.DataFrame()
+        
+        for i in range(len(name)):
+            data={'Folio BAC': folio[i].text,
+                 'Número de identificación': ids[i].text,
+                 'Nombre completo': name[i].text,
+                 'Fecha toma muestra': Fecha[i].text,
+                 'Región BAC': reg[i].text}
+            entradas.append(data)
+        df_data=pd.DataFrame(entradas)
+        return df_data
 
     def user_passw(self,us,pa):
         self.custom_print('**** SE PROCEDE A IMPORTAR USUARIO Y CLAVE ****\n')
@@ -237,6 +254,7 @@ class Navegador:
             self.gestion_notif(2)
             self.registros(100)
             for i in range(0,int(cant/100)):
+                time.sleep(1)
                 self.Tabla=pd.concat([self.Tabla,self.notif2_tabla()],ignore_index =True)
                 self.siguiente()
             tt=str(f'**** SE HA CREADO LA TABLA CON: {self.Tabla.shape[0]} ENTRADAS ****')
@@ -254,6 +272,7 @@ class Navegador:
             self.gestion_seg()
             self.registros(100)
             for i in range(0,int(cant/100)):
+                time.sleep(5)
                 self.Tabla=pd.concat([self.Tabla,self.seg_tabla()],ignore_index =True)
                 self.siguiente()
             tt=str(f'**** SE HA CREADO LA TABLA CON: {self.Tabla.shape[0]} ENTRADAS ****')
@@ -271,6 +290,7 @@ class Navegador:
             self.gestion_notif(1)
             self.registros(100)
             for i in range(0,int(cant/100)):
+                time.sleep(1)
                 self.Tabla=pd.concat([self.Tabla,self.notif1_tabla()],ignore_index =True)
                 self.siguiente_inmediata()
             tt=str(f'**** SE HA CREADO LA TABLA CON: {self.Tabla.shape[0]} ENTRADAS ****')
@@ -287,12 +307,9 @@ class Navegador:
             self.gestion_bac()
             self.registros(100)
             for i in range(0,int(cant/100)):
-                if self.bac_tabla() == 'Ningún dato disponible en esta tabla':
-                    self.bac_tabla()
-                    break
-                else:
-                    self.Tabla=pd.concat([self.Tabla,self.notif1_tabla()],ignore_index =True)
-                    self.siguiente_bac()
+                time.sleep(1)
+                self.Tabla=pd.concat([self.Tabla,self.notif1_tabla()],ignore_index =True)
+                self.siguiente_bac()
             tt=str(f'**** SE HA CREADO LA TABLA CON: {self.Tabla.shape[0]} ENTRADAS ****')
             self.custom_print(tt)
             self.custom_print('')
