@@ -50,13 +50,13 @@ nav.custom_print('**** SEG : contactos covid en gestion de seguimiento ****\n')
 
 nav.custom_print(nav.TS())
 
-nav.descargar_info('NOTIF1',3000)
+nav.descargar_info('SEG',3000)
 nav.custom_print(nav.TS())
 
 nav.descargar_info('NOTIF2',3000)
 nav.custom_print(nav.TS())
 
-nav.descargar_info('SEG',3000)
+nav.descargar_info('NOTIF1',3000)
 nav.custom_print(nav.TS())
 
 nav.custom_print('**** FIN DEL PROGRAMA ****')

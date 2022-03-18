@@ -1,9 +1,11 @@
 # -*- coding: latin-1 -*-
 import datetime as dt
 from selenium.webdriver.common.by import By
+from selenium.common.exceptions import NoSuchElementException
 import pandas as pd
 from selenium import webdriver
 import time
+import sys
 
 class Navegador:
     def __init__(self):
@@ -162,42 +164,59 @@ class Navegador:
         self.custom_print('**** LISTO ****\n')
 
     def click_seremi(self):
-        self.custom_print('**** SE PROCEDE A DAR CLICK EN "SEREMI" ****\n')
-        self.driver.find_element_by_xpath('//*[@id="formularioSeleccionarRol"]/div[2]/label').click()
-        time.sleep(3)
-        self.custom_print('**** LISTO ****\n')
+        try:
+            self.custom_print('**** SE PROCEDE A DAR CLICK EN "SEREMI" ****\n')
+            self.driver.find_element_by_xpath('//*[@id="formularioSeleccionarRol"]/div[2]/label').click()
+            time.sleep(3)
+            self.custom_print('**** LISTO ****\n') 
+        except NoSuchElementException:
+            self.custom_print('**** ERROR ERROR ERROR! No se resolvió el captcha en el tiempo necesario ****')
+            self.custom_print(f'**** El error fue: {str(NoSuchElementException)} ****\n')
 
     def gestion_notif(self,opcion=None):
-        self.custom_print('**** SE PROCEDE A ABRIR EL ACORDEON DE GESTION DE NOTIFICACIONES **** ')
-        self.driver.find_element(By.XPATH,'//*[@id="accordion"]/div[2]/div[1]').click()
-        time.sleep(3)
-        if opcion==1:
-            self.custom_print('**** SE CLICKEA EN LISTA NOTIFICACIONES **** ')
-            self.driver.find_element(By.XPATH,'//*[@id="usuarioPanel"]/div/ul/li[1]/a').click()
+        try:
+            self.custom_print('**** SE PROCEDE A ABRIR EL ACORDEON DE GESTION DE NOTIFICACIONES **** ')
+            self.driver.find_element(By.XPATH,'//*[@id="accordion"]/div[2]/div[1]').click()
             time.sleep(3)
-            self.custom_print('**** LISTO ****\n')
-        elif opcion == 2:
-            self.custom_print('**** SE CLICKEA EN LISTA DE MUESTRAS POR NOTIFICAR **** ')
-            self.driver.find_element(By.XPATH,'//*[@id="usuarioPanel"]/div/ul/li[2]/a').click()
-            time.sleep(3)
-            self.custom_print('**** LISTO ****\n')
+            if opcion==1:
+                self.custom_print('**** SE CLICKEA EN LISTA NOTIFICACIONES **** ')
+                self.driver.find_element(By.XPATH,'//*[@id="usuarioPanel"]/div/ul/li[1]/a').click()
+                time.sleep(3)
+                self.custom_print('**** LISTO ****\n')
+            elif opcion == 2:
+                self.custom_print('**** SE CLICKEA EN LISTA DE MUESTRAS POR NOTIFICAR **** ')
+                self.driver.find_element(By.XPATH,'//*[@id="usuarioPanel"]/div/ul/li[2]/a').click()
+                time.sleep(3)
+                self.custom_print('**** LISTO ****\n')
+        except NoSuchElementException:
+            self.custom_print('**** ERROR ERROR ERROR! No se abrió el acordeón de gestion de notificaciones  ****')
+            self.custom_print(f'**** El error fue: {str(NoSuchElementException)} ****\n')
+            
 
     def gestion_seg(self):
-        self.custom_print('**** SE PROCEDE A ABRIR EL ACORDEON DE GESTION DE SEGUIMIENTO **** ')
-        self.driver.find_element(By.XPATH,'//*[@id="accordion"]/div[3]/div[1]/h5/a').click()
-        time.sleep(2)
-        self.custom_print('**** SE CLICKEA EN LISTA DE CONTACTOS PACIENTES COVID-19 **** ')
-        self.driver.find_element(By.XPATH,'//*[@id="contactosPanel"]/div/li/a').click()
-        self.custom_print('**** LISTO ****\n')
+        try:
+            self.custom_print('**** SE PROCEDE A ABRIR EL ACORDEON DE GESTION DE SEGUIMIENTO **** ')
+            self.driver.find_element(By.XPATH,'//*[@id="accordion"]/div[3]/div[1]/h5/a').click()
+            time.sleep(2)
+            self.custom_print('**** SE CLICKEA EN LISTA DE CONTACTOS PACIENTES COVID-19 **** ')
+            self.driver.find_element(By.XPATH,'//*[@id="contactosPanel"]/div/li/a').click()
+            self.custom_print('**** LISTO ****\n')
+        except NoSuchElementException:
+            self.custom_print('**** ERROR ERROR ERROR! No se abrió el acordeón de gestion de seguimiento  ****')
+            self.custom_print(f'**** El error fue: {str(NoSuchElementException)} ****\n')
 
     def gestion_bac(self):
-        self.custom_print('**** SE PROCEDE A ABRIR EL ACORDEON DE GESTION DE BAC COVID-19 **** ')
-        self.driver.find_element(By.XPATH,'//*[@id="accordion"]/div[5]/div[1]/h5/a').click()
-        time.sleep(4)
-        self.custom_print('**** SE CLICKEA EN LISTAR **** ')
-        self.driver.find_element(By.XPATH,'//*[@id="analisis"]/div/ul/li/a').click()
-        self.custom_print('**** LISTO ****\n')
-        time.sleep(2)
+        try:
+            self.custom_print('**** SE PROCEDE A ABRIR EL ACORDEON DE GESTION DE BAC COVID-19 **** ')
+            self.driver.find_element(By.XPATH,'//*[@id="accordion"]/div[5]/div[1]/h5/a').click()
+            time.sleep(4)
+            self.custom_print('**** SE CLICKEA EN LISTAR **** ')
+            self.driver.find_element(By.XPATH,'//*[@id="analisis"]/div/ul/li/a').click()
+            self.custom_print('**** LISTO ****\n')
+            time.sleep(2)
+        except NoSuchElementException:
+            self.custom_print('**** ERROR ERROR ERROR! No se abrió el acordeón de gestion de BAC  ****')
+            self.custom_print(f'**** El error fue: {str(NoSuchElementException)} ****\n')
 
     def registros(self,opc=None):
         self.custom_print('**** SE CLICKEA EN LA CANTIDAD DE REGISTROS **** ')
@@ -223,22 +242,34 @@ class Navegador:
             self.custom_print('**** LISTO ****\n')
 
     def siguiente(self):
-        self.custom_print('**** SE DA CLICK EN BOTON "SIGUIENTE" AL FINAL DE LA PAGINA ****')
-        self.driver.find_element(By.XPATH,'//*[@id="tabla_boletin_eno_nuevas_next"]').click()
-        time.sleep(3)
-        self.custom_print('**** LISTO ****\n')
+        try:
+            self.custom_print('**** SE DA CLICK EN BOTON "SIGUIENTE" AL FINAL DE LA PAGINA ****')
+            self.driver.find_element(By.XPATH,'//*[@id="tabla_boletin_eno_nuevas_next"]').click()
+            time.sleep(3)
+            self.custom_print('**** LISTO ****\n')
+        except NoSuchElementException:
+            self.custom_print('**** ERROR ERROR ERROR! No se dió click en siguiente  ****')
+            self.custom_print(f'**** El error fue: {str(NoSuchElementException)} ****\n')
     
     def siguiente_bac(self):
-        self.custom_print('**** SE DA CLICK EN BOTON "SIGUIENTE" AL FINAL DE LA PAGINA ****')
-        self.driver.find_element(By.XPATH,'//*[@id="tabla_formularios_bac_next"]').click()
-        time.sleep(3)
-        self.custom_print('**** LISTO ****\n')
+        try:
+            self.custom_print('**** SE DA CLICK EN BOTON "SIGUIENTE" AL FINAL DE LA PAGINA ****')
+            self.driver.find_element(By.XPATH,'//*[@id="tabla_formularios_bac_next"]').click()
+            time.sleep(3)
+            self.custom_print('**** LISTO ****\n')
+        except NoSuchElementException:
+            self.custom_print('**** ERROR ERROR ERROR! No se dió click en siguiente  ****')
+            self.custom_print(f'**** El error fue: {str(NoSuchElementException)} ****\n')
     
     def siguiente_inmediata(self):
-        self.custom_print('**** SE DA CLICK EN BOTON "SIGUIENTE" AL FINAL DE LA PAGINA ****')
-        self.driver.find_element(By.XPATH,'//*[@id="tabla_boletin_eno_inmediatas_next"]').click()
-        time.sleep(3)
-        self.custom_print('**** LISTO ****\n')
+        try:
+            self.custom_print('**** SE DA CLICK EN BOTON "SIGUIENTE" AL FINAL DE LA PAGINA ****')
+            self.driver.find_element(By.XPATH,'//*[@id="tabla_boletin_eno_inmediatas_next"]').click()
+            time.sleep(3)
+            self.custom_print('**** LISTO ****\n')
+        except NoSuchElementException:
+            self.custom_print('**** ERROR ERROR ERROR! No se dió click en siguiente  ****')
+            self.custom_print(f'**** El error fue: {str(NoSuchElementException)} ****\n')
 
     def descargar_info(self,dat=None,can=None):
         if dat:
@@ -254,10 +285,14 @@ class Navegador:
             self.gestion_notif(2)
             self.registros(100)
             for i in range(0,int(cant/100)):
-                time.sleep(1)
-                self.Tabla=pd.concat([self.Tabla,self.notif2_tabla()],ignore_index =True)
-                self.siguiente()
-            tt=str(f'**** SE HA CREADO LA TABLA CON: {self.Tabla.shape[0]} ENTRADAS ****')
+                try:
+                    time.sleep(1)
+                    self.Tabla=pd.concat([self.Tabla,self.notif2_tabla()],ignore_index =True)
+                    self.siguiente()
+                except IndexError:
+                    self.custom_print('**** ERROR ERROR ERROR! No se abrió el acordeón de gestion de BAC  ****')
+                    self.custom_print(f'**** El error fue: {sys.exc_info()[0]} ****')      
+            tt=str(f'**** SE HA CREADO LA TABLA CON: {self.Tabla.shape[0]} ENTRADAS ****\n')
             self.custom_print(tt)
             self.Tabla.head()
             self.custom_print('')
@@ -272,9 +307,13 @@ class Navegador:
             self.gestion_seg()
             self.registros(100)
             for i in range(0,int(cant/100)):
-                time.sleep(5)
-                self.Tabla=pd.concat([self.Tabla,self.seg_tabla()],ignore_index =True)
-                self.siguiente()
+                try:
+                    time.sleep(5)
+                    self.Tabla=pd.concat([self.Tabla,self.seg_tabla()],ignore_index =True)
+                    self.siguiente()
+                except IndexError:
+                    self.custom_print('**** ERROR ERROR ERROR! No se abrió el acordeón de gestion de BAC  ****')
+                    self.custom_print(f'**** El error fue: {sys.exc_info()[0]} ****\n')
             tt=str(f'**** SE HA CREADO LA TABLA CON: {self.Tabla.shape[0]} ENTRADAS ****')
             self.custom_print(tt)
             self.Tabla.head()
@@ -290,10 +329,14 @@ class Navegador:
             self.gestion_notif(1)
             self.registros(100)
             for i in range(0,int(cant/100)):
-                time.sleep(1)
-                self.Tabla=pd.concat([self.Tabla,self.notif1_tabla()],ignore_index =True)
-                self.siguiente_inmediata()
-            tt=str(f'**** SE HA CREADO LA TABLA CON: {self.Tabla.shape[0]} ENTRADAS ****')
+                try:
+                    time.sleep(1)
+                    self.Tabla=pd.concat([self.Tabla,self.notif1_tabla()],ignore_index =True)
+                    self.siguiente_inmediata()
+                except IndexError:
+                    self.custom_print('**** ERROR ERROR ERROR! No se abrió el acordeón de gestion de BAC  ****')
+                    self.custom_print(f'**** El error fue: {sys.exc_info()[0]} ****')
+            tt=str(f'**** SE HA CREADO LA TABLA CON: {self.Tabla.shape[0]} ENTRADAS ****\n')
             self.custom_print(tt)
             self.custom_print('')
             name=self.TS()[:5]+'/2022'
@@ -307,9 +350,13 @@ class Navegador:
             self.gestion_bac()
             self.registros(100)
             for i in range(0,int(cant/100)):
-                time.sleep(1)
-                self.Tabla=pd.concat([self.Tabla,self.notif1_tabla()],ignore_index =True)
-                self.siguiente_bac()
+                try:
+                    time.sleep(1)
+                    self.Tabla=pd.concat([self.Tabla,self.notif1_tabla()],ignore_index =True)
+                    self.siguiente_bac()
+                except IndexError:
+                    self.custom_print('**** ERROR ERROR ERROR! No se abrió el acordeón de gestion de BAC  ****')
+                    self.custom_print(f'**** El error fue: {sys.exc_info()[0]} ****\n')
             tt=str(f'**** SE HA CREADO LA TABLA CON: {self.Tabla.shape[0]} ENTRADAS ****')
             self.custom_print(tt)
             self.custom_print('')
