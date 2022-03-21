@@ -6,6 +6,7 @@ import pandas as pd
 from selenium import webdriver
 import time
 import sys
+from datetime import datetime
 
 class Navegador:
     def __init__(self):
@@ -15,13 +16,14 @@ class Navegador:
         self.passw = ""
         self.driver = webdriver.Chrome()
         self.Tabla=pd.DataFrame()
+        self.hoy=datetime.today().strftime('%d-%m-%Y').replace('-',"")
     
     def TS(self):
        	t = dt.datetime.now().strftime('%m/%d %H:%M:%S')
        	evol = str((dt.datetime.now() - self.TS_inicial).seconds)
        	return str(t + '| [' + evol + 's]:')
 
-    def custom_print(self,message_to_print, log_file='LOG.txt'):
+    def custom_print(self,message_to_print, log_file='LOG_'+datetime.today().strftime('%d-%m-%Y').replace('-',"")+'.txt'):
         print(message_to_print)
         with open(log_file, 'a') as of:
             of.write('\n' + message_to_print)
@@ -293,12 +295,14 @@ class Navegador:
                     self.custom_print('**** ERROR ERROR ERROR! No se abrió el acordeón de gestion de BAC  ****')
                     self.custom_print(f'**** El error fue: {sys.exc_info()[0]} ****')      
             tt=str(f'**** SE HA CREADO LA TABLA CON: {self.Tabla.shape[0]} ENTRADAS ****\n')
+            self.r11=str(f'**** CON: {self.Tabla.shape[0]} ENTRADAS ****')
             self.custom_print(tt)
             self.Tabla.head()
             self.custom_print('')
             name=self.TS()[:5]+'/2022'
             name=name.replace('/','')
             self.Tabla.to_excel('LISTADO MUESTRAS POR NOTIFICAR '+name+'.xlsx')
+            self.r12=f'**** SE HA GUARDADO EL ARCHIVO "LISTADO MUESTRAS POR NOTIFICAR {name}" EXITOSAMENTE ****'
             self.custom_print(f'**** SE HA GUARDADO EL ARCHIVO "LISTADO MUESTRAS POR NOTIFICAR {name}" EXITOSAMENTE ****\n')
             self.Tabla=pd.DataFrame()
 
@@ -315,12 +319,14 @@ class Navegador:
                     self.custom_print('**** ERROR ERROR ERROR! No se abrió el acordeón de gestion de BAC  ****')
                     self.custom_print(f'**** El error fue: {sys.exc_info()[0]} ****\n')
             tt=str(f'**** SE HA CREADO LA TABLA CON: {self.Tabla.shape[0]} ENTRADAS ****')
+            self.r21=str(f'**** CON: {self.Tabla.shape[0]} ENTRADAS ****')
             self.custom_print(tt)
             self.Tabla.head()
             self.custom_print('')
             name=self.TS()[:5]+'/2022'
             name=name.replace('/','')
             self.Tabla.to_excel('LISTADO CONTACTOS PACIENTES COVID19 '+name+'.xlsx')
+            self.r22=f'**** SE HA GUARDADO EL ARCHIVO "LISTADO CONTACTOS PACIENTES COVID19 {name}" EXITOSAMENTE ****'
             self.custom_print(f'**** SE HA GUARDADO EL ARCHIVO "LISTADO CONTACTOS PACIENTES COVID19 {name}" EXITOSAMENTE ****\n')
             self.Tabla=pd.DataFrame()
 
@@ -337,11 +343,13 @@ class Navegador:
                     self.custom_print('**** ERROR ERROR ERROR! No se abrió el acordeón de gestion de BAC  ****')
                     self.custom_print(f'**** El error fue: {sys.exc_info()[0]} ****')
             tt=str(f'**** SE HA CREADO LA TABLA CON: {self.Tabla.shape[0]} ENTRADAS ****\n')
+            self.r31=str(f'**** CON: {self.Tabla.shape[0]} ENTRADAS ****')
             self.custom_print(tt)
             self.custom_print('')
             name=self.TS()[:5]+'/2022'
             name=name.replace('/','')
             self.Tabla.to_excel('LISTADO DE NOTIFICACIONES '+name+'.xlsx')
+            self.r32=f'**** SE HA GUARDADO EL ARCHIVO "LISTADO DE NOTIFICACIONES {name}" EXITOSAMENTE ****'
             self.custom_print(f'**** SE HA GUARDADO EL ARCHIVO "LISTADO DE NOTIFICACIONES {name}" EXITOSAMENTE ****\n')
             self.Tabla=pd.DataFrame()
 
@@ -358,13 +366,31 @@ class Navegador:
                     self.custom_print('**** ERROR ERROR ERROR! No se abrió el acordeón de gestion de BAC  ****')
                     self.custom_print(f'**** El error fue: {sys.exc_info()[0]} ****\n')
             tt=str(f'**** SE HA CREADO LA TABLA CON: {self.Tabla.shape[0]} ENTRADAS ****')
+            self.r41=str(f'**** CON: {self.Tabla.shape[0]} ENTRADAS ****')
             self.custom_print(tt)
             self.custom_print('')
             name=self.TS()[:5]+'/2022'
             name=name.replace('/','')
             self.Tabla.to_excel('LISTADO DE GESTION DE BAC '+name+'.xlsx')
+            self.r42=f'**** SE HA GUARDADO EL ARCHIVO "LISTADO DE GESTION DE BAC {name}" EXITOSAMENTE ****'
             self.custom_print(f'**** SE HA GUARDADO EL ARCHIVO "LISTADO DE GESTION DE BAC {name}" EXITOSAMENTE ****\n')
             self.Tabla=pd.DataFrame()
+    
+    def resumen(self):
+        self.custom_print('**** EL RESUMEN DE LA EJECUCIÓN DEL PROGRAMA FUE: ****\n')
+        self.custom_print(self.r12)
+        self.custom_print(self.r11)
+        self.custom_print('\n')
+        self.custom_print(self.r22)
+        self.custom_print(self.r21)
+        self.custom_print('\n')
+        self.custom_print(self.r32)
+        self.custom_print(self.r31)
+        self.custom_print('\n')
+        #self.custom_print(self.r41)
+        #self.custom_print(self.r42)
+        
+        
 
 
 

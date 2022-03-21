@@ -6,7 +6,8 @@ import pandas as pd
 import time
 
 nav=FS.Navegador()
-nav.custom_print('Consiguiendo ultima version')
+nav.custom_print('****INICIANDO PROGRAMA DE DESCARGA BDs EPIVIGILIA ****')
+nav.custom_print('Consiguiendo ultima version\n')
 
 url = "http://raw.githubusercontent.com/superegi/coronavirus_reportePeriodico/main/Scraping_epivigila/Funciones_Scraping.py"
 resp = requests.get(url)
@@ -58,6 +59,8 @@ nav.custom_print(nav.TS())
 
 nav.descargar_info('NOTIF1',3000)
 nav.custom_print(nav.TS())
+
+nav.resumen()
 
 nav.custom_print('**** FIN DEL PROGRAMA ****')
 
