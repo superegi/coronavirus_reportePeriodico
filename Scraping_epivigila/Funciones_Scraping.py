@@ -272,6 +272,16 @@ class Navegador:
         except NoSuchElementException:
             self.custom_print('**** ERROR ERROR ERROR! No se dió click en siguiente  ****')
             self.custom_print(f'**** El error fue: {str(NoSuchElementException)} ****\n')
+    
+    def cero_segs(self):
+        try:
+            self.custom_print('**** SE FILTRAN DATOS PARA 0 SEGUIMIENTOS ****\n')
+            user_Box = self.driver.find_element(By.XPATH,'//*[@id="tabla_boletin_eno_nuevas"]/thead/tr/th[9]/span[2]/div/input')
+            user_Box.send_keys('0')
+            self.driver.find_element(By.XPATH,'//*[@id="tabla_boletin_eno_nuevas"]/thead/tr/th[9]/span[2]/div/div/button/span').click()
+        except NoSuchElementException:
+            self.custom_print('**** ERROR ERROR ERROR! No se filtraron los datos  ****')
+            self.custom_print(f'**** El error fue: {str(NoSuchElementException)} ****\n')
 
     def descargar_info(self,dat=None,can=None):
         if dat:
@@ -309,6 +319,7 @@ class Navegador:
         elif dato=='SEG':
             self.custom_print('**** HA SELECCIONADO LISTA DE CONTACTOS DE GESTION DE SEGUIMIENTO ****')
             self.gestion_seg()
+            self.cero_segs()
             self.registros(100)
             for i in range(0,int(cant/100)):
                 try:
