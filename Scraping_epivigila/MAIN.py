@@ -1,19 +1,13 @@
 # -*- coding: latin-1 -*-
 
-import requests
+#import requests
 import Funciones_Scraping as FS
 import pandas as pd
 import time
+import math
 
 nav=FS.Navegador()
 nav.custom_print('****INICIANDO PROGRAMA DE DESCARGA BDs EPIVIGILIA ****')
-nav.custom_print('Consiguiendo ultima version\n')
-
-url = "http://raw.githubusercontent.com/superegi/coronavirus_reportePeriodico/main/Scraping_epivigila/Funciones_Scraping.py"
-resp = requests.get(url)
-with open("Funciones_Scraping.py", "w", encoding="utf-8") as f:
-     f.write(resp.text)
-
 
 nav.custom_print(nav.TS())
 
@@ -41,7 +35,7 @@ nav.click_seremi()
 
 #Aca deberia estar el menú que haga elegir que info y cuanto
 
-nav.custom_print('**** A CONTINUACION SE VAN A DESCARGAR 3000 ENTRADAS PARA LOS SIGUIENTES DATOS ****\n')
+nav.custom_print('**** A CONTINUACION SE VAN A DESCARGAR LOS SIGUIENTES DATOS ****\n')
 
 nav.custom_print('**** NOTIF1 : lista de notificaciones en gestion de notificaciones ****')
 
@@ -51,13 +45,21 @@ nav.custom_print('**** SEG : contactos covid en gestion de seguimiento ****\n')
 
 nav.custom_print(nav.TS())
 
-nav.descargar_info('SEG',3000)
+nav.custom_print('**** A CONTINUACION SE SOLICITARA LA CANTIDAD DE ENTRADAS DE DATOS A DESCARGAR ****')
+
+casos=float(input('Ingrese la cantidad de casos a descargar: '))
+casos_fix=int(math.ceil(casos/100)*100)
+
+nav.custom_print(f'**** SE HAN INGRESADO {casos} CASOS ****')
+nav.custom_print(f'**** SE PROCEDE A DESCARGAR {casos_fix} CASOS ****\n')
+
+nav.descargar_info('SEG',casos)
 nav.custom_print(nav.TS())
 
-nav.descargar_info('NOTIF2',3000)
+nav.descargar_info('NOTIF2',casos)
 nav.custom_print(nav.TS())
 
-nav.descargar_info('NOTIF1',3000)
+nav.descargar_info('NOTIF1',casos)
 nav.custom_print(nav.TS())
 
 nav.resumen()
