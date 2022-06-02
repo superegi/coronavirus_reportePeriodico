@@ -6,6 +6,7 @@ import pandas as pd
 from selenium import webdriver
 import time
 import sys
+import math
 from datetime import datetime
 
 class Navegador:
@@ -286,7 +287,7 @@ class Navegador:
     def descargar_info(self,dat=None,can=None):
         if dat:
             dato=dat
-            cant=can
+            cant=math.ceil(can/100)*100
         else:
             dato=str(input("Ingrese tipo de dato: "))
             cant=int(input('Ingrese cantidad de datos: '))
