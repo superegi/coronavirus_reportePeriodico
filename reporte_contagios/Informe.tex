@@ -1,6 +1,6 @@
 \documentclass{article}
-\usepackage[spanish]{babel}
-%\usepackage[english]{babel}
+%\usepackage[spanish]{babel}
+\usepackage[english]{babel}
 \usepackage[utf8]{inputenc}
 
 %\usepackage[utf8x]{inputenc}
@@ -64,28 +64,23 @@
 \section{Tendencias Coronavirus19 para la región de Valparaíso}
 
 Semana corresponde a fecha calendario. Para el caso de Chile, los casos nuevos, la ocupación de camas UCI y la cantidad de fallecidos son los informados diariamente por Minsal. Para el resto de países, es la información diaria dada por sus respectivos Ministerios de Salud. Para efectos de cálculo se utiliza como unidad de análisis la cantidad acumulada de cada semana. El valor Promedio es un estimado del semanal. El valor ‘velocidad semanal’, corresponde a un indicador propio (variación porcentual) para cada variable, el que es calculado según la semana previa de cada dato.
-
+\begin{table}[h]
 \resizebox{\textwidth}{!}{
 \begin{tabular}{ll|ccc|ccc|ccc}
 
-&  & \multicolumn{3}{c}{Casos Nuevos} & \multicolumn{3}{c}{Ocupaciòn UCI} & \multicolumn{3}{c}{Muertes diarias}  \\
-{} &  &  Promedio &  Total  & Velocidad &  Promedio &  Total  & Velocidad &  Promedio &  Total  & Velocidad  \\
+   &  & \multicolumn{3}{c}{Casos Nuevos} & \multicolumn{3}{c}{Ocupaciòn UCI} & \multicolumn{3}{c}{Muertes diarias}  \\
+   &  &  Promedio &  Total  & Velocidad &  Promedio &  Total  & Velocidad &  Promedio &  Total  & Velocidad  \\
    &  &  Diario   &  Semana & Semanal   &  Diario   &  Semana & Semanal   &  Diario   &  Semana & Semanal \\
+\hline
 
-\midrule
-2022-05-15   &         Semana -10 &         414.1 &        2899.0 &               0.4 &          15.3 &         107.0 &              -0.2 &           2.0 &          14.0 &              -0.4 \\
-2022-05-22   &          Semana -9 &         626.7 &        4387.0 &               0.5 &          13.0 &          91.0 &              -0.1 &           1.3 &           9.0 &              -0.4 \\
-2022-05-29   &          Semana -8 &         870.3 &        6092.0 &               0.4 &           9.4 &          66.0 &              -0.3 &           1.6 &          11.0 &               0.2 \\
-2022-06-05   &          Semana -7 &         966.7 &        6767.0 &               0.1 &          10.0 &          70.0 &               0.1 &           2.7 &          19.0 &               0.7 \\
-2022-06-12   &          Semana -6 &        1331.4 &        9320.0 &               0.4 &           9.7 &          68.0 &              -0.0 &           2.9 &          20.0 &               0.1 \\
-2022-06-19   &          Semana -5 &        1525.7 &       10680.0 &               0.1 &           9.9 &          69.0 &               0.0 &           4.0 &          28.0 &               0.4 \\
-2022-06-26   &          Semana -4 &        1298.0 &        9086.0 &              -0.1 &          10.0 &          70.0 &               0.0 &           3.0 &          21.0 &              -0.2 \\
-2022-07-03   &          Semana -3 &        1151.9 &        8063.0 &              -0.1 &          12.3 &          86.0 &               0.2 &           4.3 &          30.0 &               0.4 \\
-2022-07-10   &          Semana -2 &         948.1 &        6637.0 &              -0.2 &          19.3 &         135.0 &               0.6 &           6.3 &          44.0 &               0.5 \\
-2022-07-17   &          Semana -1 &         755.7 &        5290.0 &              -0.2 &          17.6 &         123.0 &              -0.1 &           7.1 &          50.0 &               0.1 \\
+\input{Tabla1}
 
 \end{tabular}
 }
+\caption{esta tabla es muy bonita}
+\end{table}
+
+asi es la cosa
 
 
 
